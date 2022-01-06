@@ -1,0 +1,99 @@
+html,body
+{
+    height: 100%;
+    width: 100%;
+    margin:0;
+    padding:0;
+}
+.main_inscription
+{
+    min-height: 100%;
+    position: relative;
+}
+
+.box_header
+{
+    background-image: url(../image/background_header.jpeg);
+    background-size: cover;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+p
+{
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+a
+{
+    font-family: 'Titillium Web', sans-serif;
+    text-decoration: none;
+}
+
+h1
+{
+    font-family: 'Teko', sans-serif;
+}
+h2
+{
+    font-family: 'Prompt', sans-serif;
+}
+h3
+{
+    font-family: 'Teko', sans-serif;
+    color: white;
+}
+.big_box_form
+{
+    display: flex;
+    justify-content: center;
+}
+.box_form
+{
+    background-color: gray;
+    width: 25%;
+    height: 40%;
+    border-radius: 10px;
+}
+input[type=text],input[type=password],input[type=password2]
+{
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+    padding: 10px;
+    margin: 10px;
+}
+
+.bouton_valider
+{
+    background-color: white;
+    color: black;
+    border: 3px solid rgb(39, 104, 202);
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+footer
+{ 
+    background-color: black;
+    height: 65px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position:absolute;
+    bottom:0;
+    width: 100%;
+}
+
+.main2_inscription
+{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
