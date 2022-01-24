@@ -6,18 +6,6 @@ $req = "SELECT * FROM reservations";
 $exec_req = mysqli_query($bdd, $req);
 $reservations = mysqli_fetch_all($exec_req, MYSQLI_ASSOC);
 
-// foreach ($reservations as $reservation) {
-
-//     if (isset($_GET['id'])) {
-
-//         echo '<table>';
-//         echo '<td>' . $reservation['titre'] . '</td>';
-//         echo '<td>' . $reservation['description'] . '</td>';
-//         echo '<td>' . $reservation['debut'] . '</td>';
-//         echo '<td>' . $reservation['fin'] . '</td>';
-//     }
-// }
-
 
 ?>
 <!DOCTYPE html>
@@ -29,6 +17,11 @@ $reservations = mysqli_fetch_all($exec_req, MYSQLI_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../reservationsalles/css/reservation.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@500&family=Roboto+Condensed&family=Teko:wght@500&family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
 
     <title>Reservation</title>
 </head>

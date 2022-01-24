@@ -20,9 +20,6 @@ $vendredi = date('Y-m-d', strtotime('Friday'));
 
 $week = array($lundi, $mardi, $mercredi, $jeudi, $vendredi);
 
-// var_dump($week);
-
-
 
 foreach ($result as $value) {
     $jour = date('Y-m-d', strtotime($value[3]));
