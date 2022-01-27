@@ -8,13 +8,13 @@ html,body
     background-repeat: no-repeat;
     background-size: cover;
 }
-.main_profil
+main
 {
     min-height: 100%;
     position: relative;
 }
 
-.box_header
+header
 {
     background-image: url(../image/background_header.jpeg);
     background-size: cover;

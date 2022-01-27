@@ -43,14 +43,10 @@ if (isset($_POST['Modifier'])) {
 </head>
 
 <body>
-    <div class="main_profil">
+    <main>
         <header>
-            <div class="box_header">
-
-                <div><a href="./index.php">Accueil</a></div>
-                <div><a href="./deconnexion.php">Déconnexion</a></div>
-
-            </div>
+            <div><a href="./index.php">Accueil</a></div>
+            <div><a href="./deconnexion.php">Déconnexion</a></div>
         </header>
 
         <div class="box_text">
@@ -66,34 +62,28 @@ if (isset($_POST['Modifier'])) {
             </ul>
         </div>
 
-
-
         <div class="big_box_form_profil">
-            <div class="box2_form_profil">
 
-                <form method="POST" action="">
-                    <div class="txt1_profil">
-                        <p>Pour modifier vos informations veuillez remplire les champs suivant : </p>
-                    </div>
+            <form method="POST" action="">
+                <div class="txt1_profil">
+                    <p>Pour modifier vos informations veuillez remplire les champs suivant : </p>
+                </div>
 
-                    <label for="Login : "></label>
-                    <input type="text" name="login" placeholder="<?php echo $dataUser['login'] ?>" size="25" />
+                <label for="Login : "></label>
+                <input type="text" name="login" placeholder="<?php echo $dataUser['login'] ?>" size="25" />
 
-                    <label for="Mot de passe : "></label>
-                    <input type="password" name="password" placeholder="<?php echo $dataUser['password'] ?>" size="25" />
+                <label for="Mot de passe : "></label>
+                <input type="password" name="password" placeholder="<?php echo $dataUser['password'] ?>" size="25" />
 
-                    <input type="submit" name="Modifier" value="Modifier" class="btn_valider" />
+                <input type="submit" name="Modifier" value="Modifier" class="btn_valider" />
 
-                </form>
-            </div>
+            </form>
         </div>
 
         <footer>
-            <div class="contact">
-                <h3>© Copyright 2021 – THE ROOM</h3>
-            </div>
+            <h3>© Copyright 2021 – THE ROOM</h3>
         </footer>
-    </div>
+    </main>
 </body>
 
 </html>
