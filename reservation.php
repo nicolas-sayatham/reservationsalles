@@ -30,7 +30,6 @@ $reservations = mysqli_fetch_all($exec_req, MYSQLI_ASSOC);
     <main>
         <header>
 
-
             <div class="box_header">
 
                 <div class="box_titre1_index">
@@ -44,18 +43,17 @@ $reservations = mysqli_fetch_all($exec_req, MYSQLI_ASSOC);
             </div>
         </header>
 
-
         <form method="GET" action="">
-
             <div>
                 <label for="ID event"></label>
                 <input type="text" name="id" placeholder="Mettez le ID que vous souhaiter , pour voir les infos" size="50" />
             </div>
-
-
             <button type="submit">Valider</button>
 
         </form>
+
+
+
         <?php
 
         foreach ($reservations as $reservation) {
@@ -82,15 +80,12 @@ $reservations = mysqli_fetch_all($exec_req, MYSQLI_ASSOC);
                 echo '<ul>';
                 echo '<li>' . $result['titre'] . '</li>';
                 echo '<li>' . $result['description'] . '</li>';
-                echo '<li>Début événement '. $result['debut'] . '</li>';
-                echo '<li>Fin événement '. $result['fin'] . '</li>';
+                echo '<li>Début événement ' . $result['debut'] . '</li>';
+                echo '<li>Fin événement ' . $result['fin'] . '</li>';
                 echo '</ul>';
             }
         }
         ?>
-
-
-
 
         <footer>
             <div class="contact">

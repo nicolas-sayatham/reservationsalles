@@ -21,16 +21,8 @@ $vendredi = date('Y-m-d', strtotime('Friday'));
 $week = array($lundi, $mardi, $mercredi, $jeudi, $vendredi);
 
 
-foreach ($result as $value) {
-    $jour = date('Y-m-d', strtotime($value[3]));
-    $h = date("H", strtotime($value[3]));
-    var_dump($h);
-}
-
-
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,72 +42,62 @@ foreach ($result as $value) {
 
 
 <body>
+    <main>
 
-    <header>
-        <div class="box_header">
-            <div class="box_lien">
-                <div><a href="./index.php">Accueil</a></div>
-            </div>
+        <header>
+
+            <div><a href="./index.php">Accueil</a></div>
+
+        </header>
+
+        <div class="box_titre_planning">
+
+            <h1>Planning</h1>
+
         </div>
-    </header>
 
-    <div class="box_titre_planning">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <?php
+                    for ($i = 0; $i < 5; $i++) {
+                        echo '<th>' . ucfirst(strftime("%A %d %B %G", strtotime('Monday this week +' . $i . 'days')));
+                    }
+                    ?>
+                </tr>
+            </thead>
 
-        <h1>Planning</h1>
-
-    </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th></th>
+            <tbody>
                 <?php
-                for ($i = 0; $i < 5; $i++) {
-                    echo '<th>' . ucfirst(strftime("%A %d %B %G", strtotime('Monday this week +' . $i . 'days')));
-                }
-                ?>
-            </tr>
-        </thead>
+                for ($j = 8; $j <= 19; $j++) {
+                    echo "<tr>";
+                    echo "<td>" . $j . ":00"."- ".($j+1).":00 </td>";
 
-        <tbody>
-            <?php
-            for ($j = 8; $j <= 19; $j++) {
-                echo "<tr>";
-                echo "<td>" . $j . ":00" . "</td>";
+                    for ($i = 0; isset($week[$i]); $i++) {
+                        echo "<td>";
 
-                for ($i = 0; isset($week[$i]); $i++) {
-                    echo "<td>";
+                        foreach ($result as $value) {
+                            $jour = date('Y-m-d', strtotime($value[3]));
+                            $h = date("H", strtotime($value[3]));
 
-                    foreach ($result as $value) {
-                        $jour = date('Y-m-d', strtotime($value[3]));
-                        $h = date("H", strtotime($value[3]));
-
-
-
-                        if ($h == $j && $jour == $week[$i]) {
-                            echo  $value[1];
+                            if ($h == $j && $jour == $week[$i]) {
+                                echo  $value[1];
+                            }
                         }
                     }
+                    echo '</td>';
                 }
-                echo '</td>';
-            }
-            ?>
-        </tbody>
-    </table>
+                ?>
+            </tbody>
+        </table>
 
-
-
-
-
-
-
-
-
-    <footer>
-        <div class="contact">
-            <h3>© Copyright 2021 – THE ROOM</h3>
-        </div>
-    </footer>
+        <footer>
+            <div class="contact">
+                <h3>© Copyright 2021 – THE ROOM</h3>
+            </div>
+        </footer>
+    </main>
 
 </body>
 

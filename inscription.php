@@ -54,13 +54,9 @@ if (isset($_POST['Valider'])) {
     </head>
 
     <body>
-        <div class="main_inscription">
+        <main>
             <header>
-                <div class="box_header">
-                    <div class="box_lien">
-                        <div><a href="./index.php">Accueil</a></div>
-                    </div>
-                </div>
+                <div><a href="./index.php">Accueil</a></div>
             </header>
 
             <div class="main2_inscription">
@@ -105,7 +101,7 @@ if (isset($_POST['Valider'])) {
                     <h3>© Copyright 2021 – THE ROOM</h3>
                 </div>
             </footer>
-        </div>
+        </main>
     </body>
 
     </html>

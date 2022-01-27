@@ -17,20 +17,17 @@
 </head>
 
 <body>
-    <div class="main_index">
+    <main>
 
         <header>
-            <div class="box_header">
-
-                <div class="box_titre1_index">
-                    <h1>THE ROOM</h1>
-                </div>
-                <?php
-                session_start();
-                include 'header.php'
-                ?>
-
+            <div class="box_titre1_index">
+                <h1>THE ROOM</h1>
             </div>
+            <?php
+            session_start();
+            include 'header.php'
+            ?>
+
         </header>
 
         <div class="box1_index">
@@ -62,26 +59,26 @@
                     Notre solution innovante ROOM met un terme aux doutes et fournit des informations claires. Au bon endroit, au bon moment.</p>
             </div>
         </div>
-    </div>
-
-    <div class="box3_index">
-        <div class="txt3_index">
-            <h2>Réservation instantanée</h2>
-            <p>Le taux d’occupation moyen des salles de réunion est de moins de 40%.
-                Utilisez la capacité disponible pour des séances ad hoc en permettant à vos employés de réserver une salle disponible directement sur place.</p>
         </div>
 
-        <div class="box_img3"><img src="../reservationsalles/image/img3_index.jpg" alt="pc working" height=400px width=500px></div>
+        <div class="box3_index">
+            <div class="txt3_index">
+                <h2>Réservation instantanée</h2>
+                <p>Le taux d’occupation moyen des salles de réunion est de moins de 40%.
+                    Utilisez la capacité disponible pour des séances ad hoc en permettant à vos employés de réserver une salle disponible directement sur place.</p>
+            </div>
 
-    </div>
+            <div class="box_img3"><img src="../reservationsalles/image/img3_index.jpg" alt="pc working" height=400px width=500px></div>
 
-    <footer>
-        <div class="contact">
+        </div>
+
+        <footer>
+
             <h3>© Copyright 2021 – THE ROOM</h3>
-        </div>
-    </footer>
 
-    </div>
+        </footer>
+
+    </main>
 </body>
 
 </html>

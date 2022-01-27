@@ -5,10 +5,6 @@ if (isset($_POST['Valider'])) {
     // Si le login et le mdp est entré
     if (!empty($_POST['login'] && !empty($_POST['mdp']))) {
 
-
-
-
-
         $bdd = mysqli_connect('localhost', 'root', '', 'reservationsalles') or die("Impossible de se connecter : " . mysqli_connect_error());
 
         // Requête SELECT avec un WHERE du login égal au login inséré et password égal au password insérer pour afficher la l'entrée qui correspond a l'utilisateur 
@@ -57,59 +53,62 @@ if (isset($_POST['Valider'])) {
 </head>
 
 <body>
-    <div class="main_connex">
-        <header>
-            <div class="box_header">
-                <div class="box_lien">
-                    <div><a href="./index.php">Accueil</a></div>
-                </div>
-            </div>
-        </header>
-        <div class="main2_connex">
-            <div class="box_titre_connex">
-                <h1>Connexion</h1>
-                <h2>Entrez vos identifiants :</h2>
-                <p>Pour réserver une salle veuillez vous connecter</p>
-            </div>
-            <div class="big_box_form_connex">
-                <div class="box_form_connex">
-                    <div class="box2_form_connex">
-
-                        <form method="POST" action="">
-
-                            <div>
-                                <label for="Login : "></label>
-                                <input type="text" name="login" placeholder="Votre login" size="25" />
-                            </div>
-
-                            <div>
-                                <label for="Mot de passe : "></label>
-                                <input type="password" name="mdp" placeholder="Votre mot de passe" size="25" />
-                            </div>
-
-                            <input type="submit" name="Valider" value="Connexion" class="bouton_valider" />
-
-                        </form>
-
+    <main>
+        <div class="main_connex">
+            <header>
+                <div class="box_header">
+                    <div class="box_lien">
+                        <div><a href="./index.php">Accueil</a></div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="box_erreur">
-            <?php
-            if (isset($erreur)) {
-                echo '<p>' . $erreur = "Aucun utilisateur" . '</p>';
-            }
-            ?>
-        </div>
+            </header>
+            
+                <div class="main2_connex">
+                    <div class="box_titre_connex">
+                        <h1>Connexion</h1>
+                        <h2>Entrez vos identifiants :</h2>
+                        <p>Pour réserver une salle veuillez vous connecter</p>
+                    </div>
+                    <div class="big_box_form_connex">
+                        <div class="box_form_connex">
+                            <div class="box2_form_connex">
 
-        <footer>
-            <div class="contact">
-                <h3>© Copyright 2021 – THE ROOM</h3>
-            </div>
-        </footer>
+                                <form method="POST" action="">
 
-    </div>
+                                    <div>
+                                        <label for="Login : "></label>
+                                        <input type="text" name="login" placeholder="Votre login" size="25" />
+                                    </div>
+
+                                    <div>
+                                        <label for="Mot de passe : "></label>
+                                        <input type="password" name="mdp" placeholder="Votre mot de passe" size="25" />
+                                    </div>
+
+                                    <input type="submit" name="Valider" value="Connexion" class="bouton_valider" />
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box_erreur">
+                    <?php
+                    if (isset($erreur)) {
+                        echo '<p>' . $erreur = "Aucun utilisateur" . '</p>';
+                    }
+                    ?>
+                </div>
+
+                <footer>
+                    <div class="contact">
+                        <h3>© Copyright 2021 – THE ROOM</h3>
+                    </div>
+                </footer>
+
+        </div>
+    </main>
 </body>
 
 </html>

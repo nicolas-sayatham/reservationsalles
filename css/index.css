@@ -4,7 +4,7 @@ html,body
     margin:0;
     padding:0;
 }
-.main
+main
 {
     min-height: 100%;
     position: relative;
@@ -22,7 +22,7 @@ footer
 }
  
 
-.box_header
+header
 {
     background-image: url(../image/background_header.jpeg);
     background-size: cover;
