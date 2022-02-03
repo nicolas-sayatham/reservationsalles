@@ -12,7 +12,8 @@
 
         echo '<a href="./index.php">Accueil</a>
         <a href="./profil.php">Profil</a>
+        <a href="./reservation-form.php">Espace réservation</a>
         <a href="./planning.php">Planning</a>
-        <a href="./reservation.php">Reservation</a>'; 
+        <a href="./reservation.php">Info réservation</a>'; 
     }
 ?>

@@ -2,11 +2,17 @@
 session_start();
 
 
-$con = mysqli_connect("localhost", "root", "", "reservationsalles");
-mysqli_set_charset($con, "utf8");
+$bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
+mysqli_set_charset($bdd, "utf8");
 $date = "SELECT * FROM reservations";
-$query = mysqli_query($con, $date);
+$query = mysqli_query($bdd, $date);
 $result = mysqli_fetch_all($query);
+
+$bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
+$query2 = "SELECT * FROM utilisateurs INNER JOIN reservations ON utilisateurs.id = reservations.id_utilisateur";
+$query2 = mysqli_query($bdd, $query2);
+$resultats = mysqli_fetch_all($query2, MYSQLI_ASSOC);
+var_dump($resultats);
 
 // Mettre les dates en format FR
 setlocale(LC_TIME, 'fr_FR.utf8', 'Fra');
@@ -19,6 +25,7 @@ $jeudi = date('Y-m-d', strtotime('Thursday'));
 $vendredi = date('Y-m-d', strtotime('Friday'));
 
 $week = array($lundi, $mardi, $mercredi, $jeudi, $vendredi);
+
 
 
 ?>
@@ -55,42 +62,44 @@ $week = array($lundi, $mardi, $mercredi, $jeudi, $vendredi);
             <h1>Planning</h1>
 
         </div>
+        <div class="box_plan">
 
-        <table>
-            <thead>
-                <tr>
-                    <th></th>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <?php
+                        for ($i = 0; $i < 5; $i++) {
+                            echo '<th>' . utf8_encode(strftime("%A %d %B %G", strtotime('Monday this week +' . $i . 'days')));
+                        }
+                        ?>
+                    </tr>
+                </thead>
+
+                <tbody>
                     <?php
-                    for ($i = 0; $i < 5; $i++) {
-                        echo '<th>' . ucfirst(strftime("%A %d %B %G", strtotime('Monday this week +' . $i . 'days')));
-                    }
-                    ?>
-                </tr>
-            </thead>
+                    for ($j = 8; $j <= 19; $j++) {
+                        echo "<tr>";
+                        echo "<td>" . $j . ":00" . "- " . ($j + 1) . ":00 </td>";
 
-            <tbody>
-                <?php
-                for ($j = 8; $j <= 19; $j++) {
-                    echo "<tr>";
-                    echo "<td>" . $j . ":00"."- ".($j+1).":00 </td>";
+                        for ($i = 0; isset($week[$i]); $i++) {
+                            echo "<td>";
 
-                    for ($i = 0; isset($week[$i]); $i++) {
-                        echo "<td>";
+                            foreach ($resultats as $resultat) {
+                                $jour = date('Y-m-d', strtotime($resultat['debut']));
+                                $h = date("H", strtotime($resultat['fin']));
 
-                        foreach ($result as $value) {
-                            $jour = date('Y-m-d', strtotime($value[3]));
-                            $h = date("H", strtotime($value[3]));
-
-                            if ($h == $j && $jour == $week[$i]) {
-                                echo  $value[1];
+                                if ($h == $j && $jour == $week[$i]) {
+                                    echo  $resultat['login'];
+                                }
                             }
                         }
+                        echo '</td>';
                     }
-                    echo '</td>';
-                }
-                ?>
-            </tbody>
-        </table>
+                    ?>
+                </tbody>
+            </table>
+        </div>
 
         <footer>
             <div class="contact">

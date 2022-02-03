@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+// On récupère les infos de la session en cours
+$dataUser = $_SESSION['data'][0];
+$id_user = $dataUser['id'];
+
+var_dump($id_user);
+
 
 if (isset($_POST['Valider'])) {
 
@@ -15,9 +21,7 @@ if (isset($_POST['Valider'])) {
         $datedebut = htmlspecialchars($_POST['datedebut']);
         $datedefin = htmlspecialchars($_POST['datedefin']);
 
-
-
-        $addevent = "INSERT INTO reservations (titre , description , debut , fin ) VALUES ('$titre','$description','$datedebut','$datedefin')";
+        $addevent = "INSERT INTO reservations (titre , description , debut , fin , id_utilisateur) VALUES ('$titre','$description','$datedebut','$datedefin','$id_user')";
 
         if (mysqli_query($bdd, $addevent)) {
 
@@ -48,68 +52,56 @@ if (isset($_POST['Valider'])) {
 
         <link rel="stylesheet" href="../reservationsalles/css/reservation-form.css">
 
-
-
         <title>Espace reservation</title>
     </head>
 
     <body>
-        <div class="main_reservation-form">
+        <main>
             <header>
-                <div class="box_header">
-                    <div class="box_lien">
-                        <div><a href="./index.php">Accueil</a></div>
-                    </div>
-                </div>
+                <div><a href="./index.php">Accueil</a></div>
             </header>
 
             <div class="main2_reservation-form">
                 <div class="box_titre_reservation-form">
                     <h1>Reservation</h1>
-                    <p>Durée maximum de 1H par réservervation</p>
+                    <p><span>Durée maximum de 1H par réservervation</span></p>
                     <p>Veuillez préciser les informations de votre évènement :</p>
                 </div>
-                <div class="big_box_reservation-form">
-                    <div class="reservation-form">
-                        <div class="box2_reservation-form">
 
-                            <form method="POST" action="">
+                <form method="POST" action="">
 
-                                <div>
-                                    <label for="Login : "></label>
-                                    <input type="text" name="titre" placeholder="Titre de l'évènement" size="25" />
-                                </div>
-
-                                <div>
-                                    <textarea name="description" cols="50" rows="10" placeholder="Description"></textarea>
-                                </div>
-
-                                <div>
-                                    <label for="Date de début : "></label>
-                                    <p>Date et Heure de début</p>
-                                    <input type="datetime" name="datedebut" placeholder=" ex : 2022-01-21 08:00" size="25" />
-                                </div>
-
-                                <div>
-                                    <label for="Date de fin : "></label>
-                                    <p>Date et Heure de fin</p>
-                                    <input type="datetime" name="datedefin" placeholder=" ex : 2022-01-21 09:00" size="25" />
-                                </div>
-
-
-                                <input type="submit" name="Valider" value="Reserver" class="bouton_valider" />
-
-                            </form>
-
-                        </div>
+                    <div>
+                        <label for="Login : "></label>
+                        <input type="text" name="titre" placeholder="Titre de l'évènement" size="25" />
                     </div>
-                </div>
-                <footer>
-                    <div class="contact">
-                        <h3>© Copyright 2021 – THE ROOM</h3>
+
+                    <div>
+                        <textarea name="description" cols="50" rows="10" placeholder="Description"></textarea>
                     </div>
-                </footer>
+
+                    <div>
+                        <label for="Date de début : "></label>
+                        <p>Date et Heure de début</p>
+                        <input type="datetime" name="datedebut" placeholder=" ex : 2022-01-21 08:00" size="25" />
+                    </div>
+
+                    <div>
+                        <label for="Date de fin : "></label>
+                        <p>Date et Heure de fin</p>
+                        <input type="datetime" name="datedefin" placeholder=" ex : 2022-01-21 09:00" size="25" />
+                    </div>
+
+                    <input type="submit" name="Valider" value="Reserver" class="bouton_valider" />
+
+                </form>
             </div>
+
+            <footer>
+                <div class="contact">
+                    <h3>© Copyright 2021 – THE ROOM</h3>
+                </div>
+            </footer>
+        </main>
     </body>
 
     </html>

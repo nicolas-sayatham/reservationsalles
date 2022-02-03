@@ -8,6 +8,11 @@ main {
   min-height: 100%;
   position: relative;
 }
+.box_plan{
+  display: flex;
+  justify-content: center;
+  
+}
 footer {
   background-color: black;
   display: flex;
