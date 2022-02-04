@@ -17,10 +17,7 @@ if (isset($_POST['Valider'])) {
         if (!empty($rep)) {
             session_start();
 
-            // Je stock le resultat de la requête dans une variable session 
-            $_SESSION['data'] = $rep;
-
-            // et je redirige vers la page de profile 
+        //si connexion alors je redirige vers la page de profile 
             header('Location: profil.php');
             exit;
         }
