@@ -13,7 +13,7 @@ if (isset($_POST['Valider'])) {
         $password = htmlspecialchars($_POST['password']);
         $password2 = htmlspecialchars($_POST['password2']);
 
-
+//      Condition pour les password et insertion en BDD du login et password
         if ($password == $password2) {
 
             $ajoututilisateur = "INSERT INTO utilisateurs (login , password) VALUES ('$login','$password')";
