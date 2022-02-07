@@ -1,13 +1,7 @@
 <?php
 session_start();
 
-
-$bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
-mysqli_set_charset($bdd, "utf8");
-$date = "SELECT * FROM reservations";
-$query = mysqli_query($bdd, $date);
-$result = mysqli_fetch_all($query);
-
+//Connexion à la BDD et relier les 2 table et afficher le tableau du résultat
 $bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
 $query2 = "SELECT * FROM utilisateurs INNER JOIN reservations ON utilisateurs.id = reservations.id_utilisateur";
 $query2 = mysqli_query($bdd, $query2);
@@ -17,7 +11,7 @@ var_dump($resultats);
 // Mettre les dates en format FR
 setlocale(LC_TIME, 'fr_FR.utf8', 'Fra');
 
-
+//Stockage des date de la semaine dans les variables 
 $lundi = date('Y-m-d', strtotime('Monday'));
 $mardi = date('Y-m-d', strtotime('Tuesday'));
 $mercredi = date('Y-m-d', strtotime('Wednesday'));
