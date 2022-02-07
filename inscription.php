@@ -3,12 +3,12 @@
 $bdd = mysqli_connect('localhost', 'root', '', 'reservationsalles');
 mysqli_set_charset($bdd, 'utf8');
 
-
+//Conditions de validation post
 if (isset($_POST['Valider'])) {
-
+//  Conditions de vérife si différent de vide les login et password
     if (!empty($_POST['login']) and !empty($_POST['password']) and !empty($_POST['password2'])) {
 
-
+//      Stockage des variables Post
         $login = htmlspecialchars($_POST['login']);
         $password = htmlspecialchars($_POST['password']);
         $password2 = htmlspecialchars($_POST['password2']);
