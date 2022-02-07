@@ -1,5 +1,5 @@
 <?php
-
+//Connexion à la BDD
 $bdd = mysqli_connect('localhost', 'root', '', 'reservationsalles') or die("Impossible de se connecter : " . mysqli_connect_error());
 mysqli_set_charset($bdd, "utf8");
 $req = "SELECT * FROM reservations";
@@ -55,7 +55,7 @@ $reservations = mysqli_fetch_all($exec_req, MYSQLI_ASSOC);
 
 
         <?php
-
+//      Boucle pour la réservations
         foreach ($reservations as $reservation) {
 
             echo '<table>';
@@ -63,18 +63,18 @@ $reservations = mysqli_fetch_all($exec_req, MYSQLI_ASSOC);
             echo '</table>';
         }
 
-
+//      Conditions pour vérifier la variable Get
         if (isset($_GET['id'])) {
 
             $id = $_GET['id'];
 
 
-
+//          Requête pour sélectionner la table réservations
             $requete = "SELECT * FROM reservations WHERE id = $id";
             $exec_requete = mysqli_query($bdd, $requete);
             $results = mysqli_fetch_all($exec_requete, MYSQLI_ASSOC);
 
-
+//          Boucle pour afficher les résultats
             foreach ($results as $result) {
 
                 echo '<ul>';
