@@ -16,7 +16,7 @@ if (isset($_POST['Modifier'])) {
         $password = $_POST['password'];
 //      Connexion à la BDD
         $bdd = mysqli_connect('localhost', 'root', '', 'reservationsalles') or die("Impossible de se connecter : " . mysqli_connect_error());
-//      Requête de M.A.J de la table utilisateurs pr le login et password 
+//      Requête de M.A.J de la table utilisateurs pr le login et password
         $requete = "UPDATE utilisateurs SET login = '$login', password='$password' WHERE id = '$id_user'";
         $exec_requete = mysqli_query($bdd, $requete);
 

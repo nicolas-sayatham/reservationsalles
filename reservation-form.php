@@ -7,20 +7,20 @@ $id_user = $dataUser['id'];
 
 var_dump($id_user);
 
-
+//Conditions pour vérifier le post
 if (isset($_POST['Valider'])) {
 
-
+//  Connexion à la BDD
     $bdd = mysqli_connect('localhost', 'root', '', 'reservationsalles') or die("Impossible de se connecter : " . mysqli_connect_error());
-
+//  Conditions pour vérifier les Post
     if (!empty($_POST['titre']) and !empty($_POST['description']) and !empty($_POST['datedebut']) and !empty($_POST['datedefin'])) {
 
-
+//      Stockage des variable Post
         $titre = htmlspecialchars($_POST['titre']);
         $description = htmlspecialchars($_POST['description']);
         $datedebut = htmlspecialchars($_POST['datedebut']);
         $datedefin = htmlspecialchars($_POST['datedefin']);
-
+//      Requête d'insertion de donné dans la table reservations
         $addevent = "INSERT INTO reservations (titre , description , debut , fin , id_utilisateur) VALUES ('$titre','$description','$datedebut','$datedefin','$id_user')";
 
         if (mysqli_query($bdd, $addevent)) {
