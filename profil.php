@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 session_start();
 
@@ -9,7 +9,7 @@ $id_user = $dataUser['id'];
 
 //Conditions pour valider le Post
 if (isset($_POST['Modifier'])) {
-//  Conditions pour la véricaion du longin et password
+//  Conditions pour la véricaion du longin et password 
     if (!empty($_POST['login']) and !empty($_POST['password'])) {
 //      Stockage des variable Post
         $login = $_POST['login'];

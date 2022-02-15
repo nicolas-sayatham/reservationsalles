@@ -21,7 +21,6 @@ $vendredi = date('Y-m-d', strtotime('Friday'));
 $week = array($lundi, $mardi, $mercredi, $jeudi, $vendredi);
 
 
-
 ?>
 
 <!DOCTYPE html>

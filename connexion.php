@@ -17,6 +17,8 @@ if (isset($_POST['Valider'])) {
         if (!empty($rep)) {
             session_start();
 
+            $_SESSION['data'] = $rep;
+
         //si connexion alors je redirige vers la page de profile 
             header('Location: profil.php');
             exit;

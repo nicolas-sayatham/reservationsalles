@@ -30,7 +30,7 @@ if (isset($_POST['Valider'])) {
         }
     } else {
 
-        $erreur = "<p>Veuillez rentrer tout les champs</p>";
+        $erreur = "<p>Veuillez rentrer tous les champs</p>";
     }
 }
 
@@ -43,7 +43,7 @@ if (isset($_POST['Valider'])) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../reservationsalles/css/index.css">
+        <link rel="stylesheet" href="../reservationsalles  /css/index.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,18 +79,58 @@ if (isset($_POST['Valider'])) {
                         <textarea name="description" cols="50" rows="10" placeholder="Description"></textarea>
                     </div>
 
-                    <div>
-                        <label for="Date de début : "></label>
-                        <p>Date et Heure de début</p>
-                        <input type="datetime" name="datedebut" placeholder=" ex : 2022-01-21 08:00" size="25" />
-                    </div>
+                            <label for="Date de début : "></label>
+                                <p>Jour de début</p>
+                            <label type="select" name="datedebut" for="Choix du jour">Choix du Jour</label>
+                        <select name="datedebut" id="Choix du jour" row="25">
 
-                    <div>
-                        <label for="Date de fin : "></label>
-                        <p>Date et Heure de fin</p>
-                        <input type="datetime" name="datedefin" placeholder=" ex : 2022-01-21 09:00" size="25" />
-                    </div>
+                            <?php
+                            for($j = 0 ; $j <= 5 ; $j ++)
+                            {
+                                echo "<option name='datedebut' value='jours'>".date('Y-m-d', strtotime('Monday this week +'. $j . 'days')) ."</option>";
+                            }
+                            ?>
+                        </select>
 
+                            <label for="Date de fin : "></label>
+                                <p>Jour de fin</p>
+                            <label type="select" name="datedefin" for="Fin de réservation">Jour choisit</label>
+                        <select name="datedefin" id="Fin de réservation" row="25">
+
+                            <?php
+                            for($j = 0 ; $j <= 5 ; $j ++)
+                            {
+                                echo "<option value='fin'>".date('Y-m-d', strtotime('Monday this week +'. $j . 'days')) ."</option>";
+                            }
+                            ?>
+
+                        </select>
+
+                            <label for="Heure de début : "></label>
+                                <p>Horaires de début</p>
+                            <label type="select" name="datedebut" for="Heure du début">Heure de début</label>
+                        <select name="datedebut" id="Heure de début : " row="25">
+
+                            <?php
+                            for($i = 8 ; $i <= 19 ; $i ++)
+                            {
+                                echo "<option name='datedebut' value='horaire'>$i</option>";
+                            }
+                            ?>
+
+                        </select>
+                            <label for="Heure de fin : "></label>
+                                <p>Horaires</p>
+                            <label name='datedefin' id="Heure de fin : " for="Heure du fin">Heure de fin</label>
+                        <select name='datedefin' id="Heure de fin : " row="25">
+
+                            <?php for($i = 8 ; $i <= 19 ; $i ++)
+                            {
+                            echo "<option name='datedefin' value='horaire'>$i</option>";
+                            }
+                            ?>
+
+                        </select></br>
                     <input type="submit" name="Valider" value="Reserver" class="bouton_valider" />
 
                 </form>
