@@ -1,29 +1,24 @@
 <?php
-<<<<<<< HEAD
 session_start();
-
-=======
 //Connexion à la base de donné.
->>>>>>> 099044fbede039400461287aec134a767b14df7c
+
 $bdd = mysqli_connect('localhost', 'root', '', 'reservationsalles');
 mysqli_set_charset($bdd, 'utf8');
 
 //Conditions de validation post
 if (isset($_POST['Valider'])) {
-<<<<<<< HEAD
 
     if (!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['password2'])) {
-=======
-//  Conditions de vérife si différent de vide les login et password
-    if (!empty($_POST['login']) and !empty($_POST['password']) and !empty($_POST['password2'])) {
->>>>>>> 099044fbede039400461287aec134a767b14df7c
 
-//      Stockage des variables Post
+        //  Conditions de vérife si différent de vide les login et password
+
+
+        //      Stockage des variables Post
         $login = htmlspecialchars($_POST['login']);
         $password = htmlspecialchars($_POST['password']);
         $password2 = htmlspecialchars($_POST['password2']);
 
-//      Condition pour les password et insertion en BDD du login et password
+        //      Condition pour les password et insertion en BDD du login et password
         if ($password == $password2) {
 
             $ajoututilisateur = "INSERT INTO utilisateurs (login , password) VALUES ('$login','$password')";
@@ -70,9 +65,9 @@ ob_start();
                         <input type="password" name="password2" placeholder="Confirmation mot de passe" size="25" />
                     </div>
 
-                  
+
                     <input type="submit" name="Valider" value="Valider" class="bouton_valider" />
-                    
+
                 </form>
 
             </div>
