@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $bdd = mysqli_connect('localhost', 'root', '', 'reservationsalles') or die("Impossible de se connecter : " . mysqli_connect_error());
 mysqli_set_charset($bdd, "utf8");
@@ -6,94 +7,58 @@ $req = "SELECT * FROM reservations";
 $exec_req = mysqli_query($bdd, $req);
 $reservations = mysqli_fetch_all($exec_req, MYSQLI_ASSOC);
 
-
+ob_start()
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<form method="GET" action="">
+    <div>
+        <select name="id" id="select-reservation">
+            <option value="">Veuillez Choisir une réservation </option>
 
-    <link rel="stylesheet" href="../reservationsalles/css/reservation.css">
+            <?php foreach ($reservations as $reservation) : ?>
+                <option value="<?= $reservation['id'] ?>"><?= $reservation['titre'] . ' '. $reservation['id']?></option>
+            <?php endforeach ?>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        </select>
+    </div>
+    <button type="submit">Valider</button>
 
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@500&family=Roboto+Condensed&family=Teko:wght@500&family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
+</form>
 
-    <title>Reservation</title>
-</head>
+<?php foreach ($reservations as $reservation) : ?>
 
-<body>
-    <main>
-        <header>
+    <table>
+        <td>
+            <p><?= $reservation['id'] ?> <?= $reservation['titre'] ?></p>
+        </td>
+    </table>
 
-            <div class="box_header">
+<?php endforeach; ?>
 
-                <div class="box_titre1_index">
-                    <h1>THE ROOM</h1>
-                </div>
-                <?php
-                session_start();
-                include 'header.php';
-                ?>
+<?php if (isset($_GET['id'])) {
 
-            </div>
-        </header>
-
-        <form method="GET" action="">
-            <div>
-                <label for="ID event"></label>
-                <input type="text" name="id" placeholder="Mettez le ID que vous souhaiter , pour voir les infos" size="50" />
-            </div>
-            <button type="submit">Valider</button>
-
-        </form>
+$id = $_GET['id'];
 
 
+//          Requête pour sélectionner la table réservations
+$requete = "SELECT * FROM reservations WHERE id = $id";
+$exec_requete = mysqli_query($bdd, $requete);
+$results = mysqli_fetch_all($exec_requete, MYSQLI_ASSOC);
 
-        <?php
+//          Boucle pour afficher les résultats
+foreach ($results as $result) {
 
-        foreach ($reservations as $reservation) {
+    echo '<ul>';
+    echo '<li>' . $result['titre'] . '</li>';
+    echo '<li>' . $result['description'] . '</li>';
+    echo '<li>Début événement ' . $result['debut'] . '</li>';
+    echo '<li>Fin événement ' . $result['fin'] . '</li>';
+    echo '</ul>';
+}
+}
+?>
 
-            echo '<table>';
-            echo '<td>' . $reservation['id'] . '</td>';
-            echo '</table>';
-        }
-
-
-        if (isset($_GET['id'])) {
-
-            $id = $_GET['id'];
-
-
-
-            $requete = "SELECT * FROM reservations WHERE id = $id";
-            $exec_requete = mysqli_query($bdd, $requete);
-            $results = mysqli_fetch_all($exec_requete, MYSQLI_ASSOC);
-
-
-            foreach ($results as $result) {
-
-                echo '<ul>';
-                echo '<li>' . $result['titre'] . '</li>';
-                echo '<li>' . $result['description'] . '</li>';
-                echo '<li>Début événement ' . $result['debut'] . '</li>';
-                echo '<li>Fin événement ' . $result['fin'] . '</li>';
-                echo '</ul>';
-            }
-        }
-        ?>
-
-        <footer>
-            <div class="contact">
-                <h3>© Copyright 2021 – THE ROOM</h3>
-            </div>
-        </footer>
-
-    </main>
-</body>
-
-</html>
+<?php
+$content = ob_get_clean();
+require_once 'template.php';
+?>

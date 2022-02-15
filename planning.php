@@ -1,22 +1,19 @@
 <?php
 session_start();
 
+// $bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
+// mysqli_set_charset($bdd, "utf8");
+// $date = "SELECT * FROM reservations";
+// $query = mysqli_query($bdd, $date);
+// $result = mysqli_fetch_all($query);
 
 $bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
-mysqli_set_charset($bdd, "utf8");
-$date = "SELECT * FROM reservations";
-$query = mysqli_query($bdd, $date);
-$result = mysqli_fetch_all($query);
-
-$bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
-$query2 = "SELECT * FROM utilisateurs INNER JOIN reservations ON utilisateurs.id = reservations.id_utilisateur";
+$query2 = "SELECT *, date_format(fin, '%H') as heure, date_format(fin, '%Y-%m-%d') as jour FROM utilisateurs INNER JOIN reservations ON utilisateurs.id = reservations.id_utilisateur";
 $query2 = mysqli_query($bdd, $query2);
 $resultats = mysqli_fetch_all($query2, MYSQLI_ASSOC);
-var_dump($resultats);
 
 // Mettre les dates en format FR
 setlocale(LC_TIME, 'fr_FR.utf8', 'Fra');
-
 
 $lundi = date('Y-m-d', strtotime('Monday'));
 $mardi = date('Y-m-d', strtotime('Tuesday'));
@@ -24,90 +21,68 @@ $mercredi = date('Y-m-d', strtotime('Wednesday'));
 $jeudi = date('Y-m-d', strtotime('Thursday'));
 $vendredi = date('Y-m-d', strtotime('Friday'));
 
-$week = array($lundi, $mardi, $mercredi, $jeudi, $vendredi);
+$week = [$lundi, $mardi, $mercredi, $jeudi, $vendredi];
 
-
-
+ob_start()
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<div class="box_titre_planning">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <h1>Planning</h1>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</div>
+<div class="box_plan">
 
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@500&family=Roboto+Condensed&family=Teko:wght@500&family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <?php for ($i = 0; $i < 5; $i++) : ?>
 
-    <link rel="stylesheet" href="../reservationsalles/css/planning.css">
-    <title>Planning</title>
-</head>
+                        <th>
+                            <?= date('Y-m-d', strtotime('Monday this week +' . $i . 'days')) ?>
+                        </th>
+                        
+                    <?php endfor; ?>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php for ($j = 8; $j <= 19; $j++) : ?>
 
+                <tr>
+                    <td><?= $j ?>:00-<?= $j + 1 ?>:00 </td>
 
-<body>
-    <main>
+                    <?php foreach ($week as $day) : ?>
 
-        <header>
+                        <td>
+                            <?php foreach ($resultats as $resultat) : ?>
 
-            <div><a href="./index.php">Accueil</a></div>
+                                <?php if ($resultat['heure'] == $j && $resultat['jour'] == $day) : ?>
 
-        </header>
+                                    <p><?= $resultat['login'] ?></p>
 
-        <div class="box_titre_planning">
+                                    <a href="./reservation.php?id=<?= $resultat['id'] ?>">
 
-            <h1>Planning</h1>
+                                        <p><?= $resultat['titre'] ?></p>
 
-        </div>
-        <div class="box_plan">
+                                    </a>
+                                <?php endif; ?>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <?php
-                        for ($i = 0; $i < 5; $i++) {
-                            echo '<th>' . utf8_encode(strftime("%A %d %B %G", strtotime('Monday this week +' . $i . 'days')));
-                        }
-                        ?>
-                    </tr>
-                </thead>
+                            <?php endforeach; ?>
 
-                <tbody>
-                    <?php
-                    for ($j = 8; $j <= 19; $j++) {
-                        echo "<tr>";
-                        echo "<td>" . $j . ":00" . "- " . ($j + 1) . ":00 </td>";
+                        </td>
 
-                        for ($i = 0; isset($week[$i]); $i++) {
-                            echo "<td>";
+                    <?php endforeach; ?>
 
-                            foreach ($resultats as $resultat) {
-                                $jour = date('Y-m-d', strtotime($resultat['debut']));
-                                $h = date("H", strtotime($resultat['fin']));
+                </tr>
 
-                                if ($h == $j && $jour == $week[$i]) {
-                                    echo  $resultat['login'];
-                                }
-                            }
-                        }
-                        echo '</td>';
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
+            <?php endfor; ?>
+        </tbody>
+    </table>
+</div>
 
-        <footer>
-            <div class="contact">
-                <h3>© Copyright 2021 – THE ROOM</h3>
-            </div>
-        </footer>
-    </main>
-
-</body>
-
-</html>
+<?php
+$content = ob_get_clean();
+require_once 'template.php';
+?>

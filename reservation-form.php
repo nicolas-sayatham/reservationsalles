@@ -13,7 +13,7 @@ if (isset($_POST['Valider'])) {
 
     $bdd = mysqli_connect('localhost', 'root', '', 'reservationsalles') or die("Impossible de se connecter : " . mysqli_connect_error());
 
-    if (!empty($_POST['titre']) and !empty($_POST['description']) and !empty($_POST['datedebut']) and !empty($_POST['datedefin'])) {
+    if (!empty($_POST['titre']) && !empty($_POST['description']) && !empty($_POST['datedebut']) && !empty($_POST['datedefin'])) {
 
 
         $titre = htmlspecialchars($_POST['titre']);
@@ -33,75 +33,47 @@ if (isset($_POST['Valider'])) {
         $erreur = "<p>Veuillez rentrer tout les champs</p>";
     }
 }
-
+ob_start();
 ?>
 
-<DOCTYPE html>
-    <html lang="en">
+<div class="main2_reservation-form">
+    <div class="box_titre_reservation-form">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../reservationsalles/css/index.css">
+        <h1>Reservation</h1>
+        <p><span>Durée maximum de 1H par réservervation</span></p>
+        <p>Veuillez préciser les informations de votre évènement :</p>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    </div>
 
-        <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@500&family=Roboto+Condensed&family=Teko:wght@500&family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
+    <form method="POST" action="">
 
-        <link rel="stylesheet" href="../reservationsalles/css/reservation-form.css">
+        <div>
+            <label for="Login : "></label>
+            <input type="text" name="titre" placeholder="Titre de l'évènement" size="25" />
+        </div>
 
-        <title>Espace reservation</title>
-    </head>
+        <div>
+            <textarea name="description" cols="50" rows="10" placeholder="Description"></textarea>
+        </div>
 
-    <body>
-        <main>
-            <header>
-                <div><a href="./index.php">Accueil</a></div>
-            </header>
+        <div>
+            <label for="Date de début : "></label>
+            <p>Date et Heure de début</p>
+            <input type="datetime" name="datedebut" placeholder=" ex : 2022-01-21 08:00" size="25" />
+        </div>
 
-            <div class="main2_reservation-form">
-                <div class="box_titre_reservation-form">
-                    <h1>Reservation</h1>
-                    <p><span>Durée maximum de 1H par réservervation</span></p>
-                    <p>Veuillez préciser les informations de votre évènement :</p>
-                </div>
+        <div>
+            <label for="Date de fin : "></label>
+            <p>Date et Heure de fin</p>
+            <input type="datetime" name="datedefin" placeholder=" ex : 2022-01-21 09:00" size="25" />
+        </div>
 
-                <form method="POST" action="">
+        <input type="submit" name="Valider" value="Reserver" class="bouton_valider" />
 
-                    <div>
-                        <label for="Login : "></label>
-                        <input type="text" name="titre" placeholder="Titre de l'évènement" size="25" />
-                    </div>
+    </form>
+</div>
 
-                    <div>
-                        <textarea name="description" cols="50" rows="10" placeholder="Description"></textarea>
-                    </div>
-
-                    <div>
-                        <label for="Date de début : "></label>
-                        <p>Date et Heure de début</p>
-                        <input type="datetime" name="datedebut" placeholder=" ex : 2022-01-21 08:00" size="25" />
-                    </div>
-
-                    <div>
-                        <label for="Date de fin : "></label>
-                        <p>Date et Heure de fin</p>
-                        <input type="datetime" name="datedefin" placeholder=" ex : 2022-01-21 09:00" size="25" />
-                    </div>
-
-                    <input type="submit" name="Valider" value="Reserver" class="bouton_valider" />
-
-                </form>
-            </div>
-
-            <footer>
-                <div class="contact">
-                    <h3>© Copyright 2021 – THE ROOM</h3>
-                </div>
-            </footer>
-        </main>
-    </body>
-
-    </html>
+<?php
+$content = ob_get_clean();
+require_once 'template.php';
+?>
