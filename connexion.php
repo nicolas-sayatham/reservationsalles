@@ -16,8 +16,10 @@ if (isset($_POST['Valider'])) {
         // Si l'array n'est pas vide donc si l'utilisateur est présent dans la BDD 
         if (!empty($rep)) {
             session_start();
+
             $_SESSION['data'] = $rep;
-            //si connexion alors je redirige vers la page de profile 
+
+        //si connexion alors je redirige vers la page de profile 
             header('Location: profil.php');
 
             exit;

@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+<<<<<<< HEAD
 // $bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
 // mysqli_set_charset($bdd, "utf8");
 // $date = "SELECT * FROM reservations";
@@ -9,21 +10,36 @@ session_start();
 
 $bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
 $query2 = "SELECT *, date_format(fin, '%H') as heure, date_format(fin, '%Y-%m-%d') as jour FROM utilisateurs INNER JOIN reservations ON utilisateurs.id = reservations.id_utilisateur";
+=======
+//Connexion à la BDD et relier les 2 table et afficher le tableau du résultat
+$bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
+$query2 = "SELECT * FROM utilisateurs INNER JOIN reservations ON utilisateurs.id = reservations.id_utilisateur";
+>>>>>>> 099044fbede039400461287aec134a767b14df7c
 $query2 = mysqli_query($bdd, $query2);
 $resultats = mysqli_fetch_all($query2, MYSQLI_ASSOC);
 
 // Mettre les dates en format FR
 setlocale(LC_TIME, 'fr_FR.utf8', 'Fra');
 
+<<<<<<< HEAD
+=======
+//Stockage des date de la semaine dans les variables 
+>>>>>>> 099044fbede039400461287aec134a767b14df7c
 $lundi = date('Y-m-d', strtotime('Monday'));
 $mardi = date('Y-m-d', strtotime('Tuesday'));
 $mercredi = date('Y-m-d', strtotime('Wednesday'));
 $jeudi = date('Y-m-d', strtotime('Thursday'));
 $vendredi = date('Y-m-d', strtotime('Friday'));
 
+<<<<<<< HEAD
 $week = [$lundi, $mardi, $mercredi, $jeudi, $vendredi];
 
 ob_start()
+=======
+$week = array($lundi, $mardi, $mercredi, $jeudi, $vendredi);
+
+
+>>>>>>> 099044fbede039400461287aec134a767b14df7c
 ?>
 
 <div class="box_titre_planning">
