@@ -43,7 +43,7 @@ ob_start()
                     <?php for ($i = 0; $i < 5; $i++) : ?>
 
                 <th>
-                    <?= date('Y-m-d', strtotime('Monday this week +' . $i . 'days')) ?>
+                    <?=  utf8_encode(strftime("%A %d %B %G", strtotime('Monday this week +' . $i . 'days'))); ?>
                 </th>
 
             <?php endfor; ?>
@@ -56,12 +56,15 @@ ob_start()
                 <tr>
                     <td><?= $j ?>:00-<?= $j + 1 ?>:00 </td>
 
-                    <?php foreach ($week as $day) : ?>
+                    <?php for ($i=0; isset($week[$i]); $i++) : ?> 
 
                         <td>
                             <?php foreach ($resultats as $resultat) : ?>
 
-                                <?php if ($resultat['heure'] == $j && $resultat['jour'] == $day) : ?>
+                               <?php $jour = date('Y-m-d', strtotime($resultat['debut']));
+                                   $h = date("H", strtotime($resultat['fin'])); ?>
+
+                                <?php if ($h== $j && $jour == $week[$i]) : ?>
 
                                     <p><?= $resultat['login'] ?></p>
 
@@ -76,7 +79,7 @@ ob_start()
 
                         </td>
 
-                    <?php endforeach; ?>
+                     <?php endfor; ?>
 
                 </tr>
 

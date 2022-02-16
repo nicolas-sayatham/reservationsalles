@@ -12,7 +12,7 @@ ob_start()
 ?>
 
 <form method="GET" action="">
-    <div>
+    
         <select name="id" id="select-reservation">
             <option value="">Veuillez Choisir une réservation </option>
 
@@ -21,21 +21,11 @@ ob_start()
             <?php endforeach ?>
 
         </select>
-    </div>
-    <button type="submit">Valider</button>
 
+        <button type="submit" class=bouton_valider >Valider</button>
+    
 </form>
 
-<?php foreach ($reservations as $reservation) : ?>
-
-
-    <table>
-        <td>
-            <p><?= $reservation['id'] ?> <?= $reservation['titre'] ?></p>
-        </td>
-    </table>
-
-<?php endforeach; ?>
 
 <?php if (isset($_GET['id'])) {
 
@@ -50,10 +40,10 @@ ob_start()
     foreach ($results as $result) {
 
         echo '<ul>';
-        echo '<li>' . $result['titre'] . '</li>';
-        echo '<li>' . $result['description'] . '</li>';
-        echo '<li>Début événement ' . $result['debut'] . '</li>';
-        echo '<li>Fin événement ' . $result['fin'] . '</li>';
+        echo '<li>Nom événement : ' . $result['titre'] . '</li>';
+        echo '<li>Sujet : ' . $result['description'] . '</li>';
+        echo '<li>Date de début : ' . $result['debut'] . '</li>';
+        echo '<li>Date de fin : ' . $result['fin'] . '</li>';
         echo '</ul>';
     }
 }
