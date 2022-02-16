@@ -43,10 +43,13 @@ ob_start();
 
 
 <div class="main2_reservation-form">
-                
+                <article>
                     <h1>Reservation</h1>
                     <span class="condition">Durée maximum de 1H par réservervation</span>
                     <p>Veuillez préciser les informations de votre évènement :</p>
+
+                </article>
+                    
                 
                 <div class="big_box_reservation-form">
                     <div class="reservation-form">
@@ -60,7 +63,7 @@ ob_start();
                                 </div>
 
                                 <div>
-                                    <textarea name="description" cols="50" rows="10" placeholder="Description"></textarea>
+                                    <textarea name="description" cols="50" rows="5" placeholder="Description"></textarea>
                                 </div>
 
                                 <div>
