@@ -10,6 +10,8 @@ if (isset($_POST['Valider'])) {
 
     //  Connexion à la BDD
     require 'bdd.php';
+    $verif = true;
+    $dispo = "";
 
     if(!empty($_POST['datedebut']))
     {
@@ -20,6 +22,7 @@ if (isset($_POST['Valider'])) {
 
         foreach ($results as $result) 
        {
+                
                // $heureDebut = date("H",strtotime($_POST['datedebut']));
                $jourDebut = date('Y-m-d H:i:s',strtotime($_POST['datedebut']));
 
@@ -29,7 +32,7 @@ if (isset($_POST['Valider'])) {
 
            if ( $jourDebut === $result['debut'])
            {
-               $pasDispo = false ;
+               $verif = false ;
                $dispo =  'Ce crénau est indisponible , veuillez en choisir un autre';
                
            }
@@ -38,7 +41,7 @@ if (isset($_POST['Valider'])) {
     }
 
     // Si créneau dispo alors on rajoute dans la bdd  
-    if ($pasDispo != false)
+    if ($verif != false)
     {
 
         //      Stockage des variable Post
