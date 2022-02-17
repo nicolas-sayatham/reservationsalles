@@ -2,11 +2,10 @@
 
 session_start();
 
-$bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
-$query2 = "SELECT *, date_format(fin, '%H') as heure, date_format(fin, '%Y-%m-%d') as jour FROM utilisateurs INNER JOIN reservations ON utilisateurs.id = reservations.id_utilisateur";
 
 //Connexion à la BDD et relier les 2 table et afficher le tableau du résultat
-$bdd = mysqli_connect("localhost", "root", "", "reservationsalles");
+require 'bdd.php';
+
 $query2 = "SELECT * FROM utilisateurs INNER JOIN reservations ON utilisateurs.id = reservations.id_utilisateur";
 $query2 = mysqli_query($bdd, $query2);
 $resultats = mysqli_fetch_all($query2, MYSQLI_ASSOC);
@@ -32,10 +31,12 @@ ob_start()
 <div class="box_titre_planning">
 
     <h1>Planning</h1>
-
 </div>
-<div class="box_plan">
 
+<p>Pour reserver veuillez suivre ce lien <a href="reservation-form.php">RESERVER</a></p>
+
+<div class="box_plan">
+    
     <table>
         <thead>
             <tr>

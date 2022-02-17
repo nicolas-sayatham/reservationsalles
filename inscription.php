@@ -2,7 +2,7 @@
 session_start();
 //Connexion à la base de donné.
 
-$bdd = mysqli_connect('localhost', 'root', '', 'reservationsalles');
+require 'bdd.php';
 mysqli_set_charset($bdd, 'utf8');
 
 //Conditions de validation post
@@ -15,8 +15,8 @@ if (isset($_POST['Valider'])) {
 
         //      Stockage des variables Post
         $login = htmlspecialchars($_POST['login']);
-        $password = htmlspecialchars($_POST['password']);
-        $password2 = htmlspecialchars($_POST['password2']);
+        $password = sha1($_POST['password']);
+        $password2 = sha1($_POST['password2']);
 
         //      Condition pour les password et insertion en BDD du login et password
         if ($password == $password2) {

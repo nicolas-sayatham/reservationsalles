@@ -5,11 +5,15 @@ if (isset($_POST['Valider'])) {
     // Si le login et le mdp est entré
     if (!empty($_POST['login'] && !empty($_POST['mdp']))) {
 
-        $bdd = mysqli_connect('localhost', 'root', '', 'reservationsalles') or die("Impossible de se connecter : " . mysqli_connect_error());
+        $login_co = $_POST['login'];
+        $password_co = sha1($_POST['mdp']);
+
+        require 'bdd.php';
+        
 
         // Requête SELECT avec un WHERE du login égal au login inséré et password égal au password insérer pour afficher la l'entrée qui correspond a l'utilisateur 
         // Renvoie un array vide si l'utilisateur n'existe pas 
-        $requete = ' SELECT * FROM utilisateurs WHERE login = "' . $_POST['login'] . '" AND password = "' . $_POST['mdp'] . '" ';
+        $requete = ' SELECT * FROM utilisateurs WHERE login = "' . $login_co . '" AND password = "' . $password_co . '" ';
         $exec_requete = mysqli_query($bdd, $requete);
         $rep = mysqli_fetch_all($exec_requete, MYSQLI_ASSOC);
 

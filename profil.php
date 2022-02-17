@@ -36,9 +36,7 @@ ob_start();
         <li>
             <p>Login : <?= $dataUser['login'] ?></p>
         </li>
-        <li>
-            <p>Mot de passe : <?= $dataUser['password'] ?></p>
-        </li>
+        
     </ul>
 </div>
 
@@ -53,7 +51,7 @@ ob_start();
         <input type="text" name="login" placeholder="<?= $dataUser['login'] ?>" size="25" />
 
         <label for="Mot de passe : "></label>
-        <input type="password" name="password" placeholder="<?= $dataUser['password'] ?>" size="25" />
+        <input type="password" name="password" placeholder="" size="25" />
 
         <input type="submit" name="Modifier" value="Modifier" class="btn_valider" />
     </form>
